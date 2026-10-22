@@ -1,4 +1,4 @@
-import type { KeyConfig } from "./types";
+import type { KeyConfig } from "../types/types";
 
 export const KEYS: KeyConfig[] = [
   { label: "C", kind: "clear", ariaLabel: "сбросить" },

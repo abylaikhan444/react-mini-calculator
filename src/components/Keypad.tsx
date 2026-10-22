@@ -1,5 +1,5 @@
-import { KEYS } from "../keys";
-import type { KeyConfig } from "../types";
+import { KEYS } from "../constants/keys";
+import type { KeyConfig } from "../types/types";
 
 type KeypadProps = {
   onKeyPress: (key: KeyConfig) => void;

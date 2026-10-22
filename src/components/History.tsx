@@ -4,7 +4,7 @@ type HistoryProps = {
 
 export default function History({ entries }: HistoryProps) {
   if (entries.length === 0) {
-    return <p className="history-box__error">Истории пока нет</p>;
+    return <p className="history__empty">Истории пока нет</p>;
   }
 
   return (

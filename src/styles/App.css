@@ -18,9 +18,6 @@ body {
   display: flex;
   gap: 200px;
 }
-.calculator__title {
-  padding: 50px;
-}
 
 .calculator__design {
   font-family: "Montserrat", sans-serif;
@@ -38,11 +35,11 @@ body {
   align-items: center;
   font-family: "Montserrat", sans-serif;
 }
-.calculator__header-h1 {
+.calculator__title {
   font-size: 94px;
   color: var(--calcalculator-header-color);
 }
-.calculator__header-p {
+.calculator__author {
   font-size: 34px;
   background-color: var(--calculator-title-background-color);
   padding: 10px;

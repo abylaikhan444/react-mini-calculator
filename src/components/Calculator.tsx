@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { calculate } from "../calculate";
-import type { KeyConfig, Operation } from "../types";
+import type { KeyConfig, Operation } from "../types/types";
 import Display from "../components/Display";
 import Keypad from "../components/Keypad";
 import History from "../components/History";
 import { formatResult } from "../utils/formatResult";
+import { calculate } from "../utils/calculate";
 
 const INITIAL_INPUT = "0";
 const ERROR_TEXT = "Ошибка";
@@ -46,7 +46,8 @@ export default function Calculator() {
 
   function handleDigit(digit: string) {
     if (hasError) {
-      resetCalculator("0");
+      resetCalculator(INITIAL_INPUT);
+      setCurrentInput(digit);
       return;
     }
     setCurrentInput((prev) => {
@@ -66,10 +67,7 @@ export default function Calculator() {
 
   function handleDot() {
     if (hasError) {
-      setCurrentInput("0.");
-      setPreviousValue(null);
-      setOperation(null);
-      setIsNewNumber(false);
+      resetCalculator("0.");
       return;
     }
 
@@ -107,7 +105,7 @@ export default function Calculator() {
 
       setPreviousValue(result);
       setOperation(nextOperation);
-      setCurrentInput(String(result));
+      setCurrentInput(formatResult(result, MAX_INPUT_LENGTH));
       setIsNewNumber(true);
       return;
     }
@@ -137,7 +135,7 @@ export default function Calculator() {
   }
 
   function handleClear() {
-    resetCalculator("0");
+    resetCalculator(INITIAL_INPUT);
   }
 
   function resetCalculator(nextInput: string) {
@@ -151,10 +149,10 @@ export default function Calculator() {
     <div className="calculator">
       <div className="calculator__left-side">
         <section className="calculator__header">
-          <h1 className="calculator__header-h1">
+          <h1 className="calculator__title">
             Calculator <br /> Design
           </h1>
-          <span className="calculator__header-p">By-Abylaikhan</span>
+          <span className="calculator__author">By-Abylaikhan</span>
         </section>
       </div>
       <section className="calculator__design">

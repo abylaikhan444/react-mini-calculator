@@ -20,7 +20,7 @@
 В отличие от стандартных калькуляторов с приоритетом операций (где умножение
 выполняется раньше сложения), данный проект реализует логику классического
 настольного калькулятора (Left-to-Right):
-2 + 3 \times 4 = 20 \quad (\text{а не } 14)
+2 + 3 × 4 = 20 (а не 14)
 
 Главные особенности:
 
@@ -38,16 +38,24 @@
 ответственности):
 
 src/
+├── assets/
 ├── components/
-│ ├── Display.tsx // Dumb-компонент: экран ввода и строка-подсказка
-│ ├── Keypad.tsx // Dumb-компонент: сетка кнопок (не знает о калькуляторе)
-│ └── History.tsx // Dumb-компонент: список истории
+│ ├── Calculator.tsx
+│ ├── Display.tsx
+│ ├── History.tsx
+│ └── Keypad.tsx
+├── constants/
+│ └── keys.ts
+├── styles/
+│ ├── index.css
+│ └── App.css
 ├── types/
-│ └── index.ts // Типы: Operation ('+' | '-' | '×' | '÷'), KeyConfig
+│ └── index.ts  
 ├── utils/
-│ └── calculate.ts // Pure function: чистая математика без React-зависимостей
-├── Calculator.tsx // Smart Container: мозг приложения со всеми useState
-└── App.css // Стили по методологии БЭМ
+│ ├── calculate.ts  
+│ └── formatResult.ts
+├── App.tsx  
+└── main.tsx
 
 🧠 Карта состояния (State Architecture)
 
@@ -84,7 +92,7 @@ src/
   сбрасывается в false.
 - Защита от лидирующих нулей: если на экране '0', ввод другой цифры заменяет
   его, а не создает '05'.
-- Лимит длины: блокировка ввода при длине \ge 12 символов.
+- Лимит длины: блокировка ввода при длине >= 12 символов.
 
 2. Ввод десятичной точки (handleDot)
 
@@ -136,7 +144,7 @@ src/
 
 1.  Клонировать репозиторий:
 
-    git clone https://github.com/your-username/react-calculator.git
+    git clone https://github.com/abylaikhan444/react-mini-calculator
     cd react-calculator
 
 2.  Установить зависимости:

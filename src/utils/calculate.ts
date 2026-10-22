@@ -1,4 +1,4 @@
-import type { Operation } from "./types";
+import type { Operation } from "../types/types";
 
 // Возвращает результат или null, если посчитать нельзя (деление на ноль).
 export function calculate(left: number, operation: Operation, right: number): number | null {
