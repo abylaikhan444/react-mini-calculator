@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+html::-webkit-scrollbar {
+  display: none;
+}
+body {
+  background-color: var(--body-background-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+/* CALCULATOR COMPONENT */
+.calculator {
+  display: flex;
+  gap: 200px;
+}
+.calcalculator-title {
+  padding: 50px;
+}
+
+.calculator-design {
+  font-family: "Montserrat", sans-serif;
+  padding: 10px;
+  background-color: var(--calculator-background-color);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+.calculator-design button {
+  font-family: inherit;
+}
+.calcalculator-leftside {
+  display: flex;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+}
+.calcalculator-header-h1 {
+  font-size: 94px;
+  color: var(--calcalculator-header-color);
+}
+.calcalculator-header-p {
+  font-size: 34px;
+  background-color: var(--calculator-title-background-color);
+  padding: 10px;
+}
+
+/* KEYPAD COMPONENT */
+.keypad {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  padding-top: 50px;
+}
+
+.keypad > button {
+  padding: 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 32px;
+  background-color: var(--button-background-color);
+  color: var(--button-font-color);
+}
+.keypad > button:hover {
+  background-color: #c6ee25;
+  transition: 0.3s ease-out;
+}
+/* .keypad__key keypad__key--operation,
+.keypad__key keypad__key--equals, */
+.keypad .keypad__key--operation {
+  color: orange;
+}
+.keypad .keypad__key--dot {
+  color: orange;
+}
+
+/* DISPLAY COMPONENT */
+
+.display {
+  padding: 20px;
+}
+.display__expression {
+  color: var(--display-expression-value-color);
+  font-size: 18px;
+}
+.display__value {
+  color: var(--display-expression-value-color);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* HISTORY COMPONENT */
+
+.history-box {
+  
+}
+
+.history-box__list {
+  color: var(--display-expression-value-color);
+  display: flex;
+  flex-direction: column;
+}
+.history__error {
+  color: var(--display-expression-value-color);
+}
