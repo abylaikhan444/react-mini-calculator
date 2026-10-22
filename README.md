@@ -38,24 +38,24 @@
 ответственности):
 
 src/
-├── assets/
-├── components/
-│ ├── Calculator.tsx
-│ ├── Display.tsx
-│ ├── History.tsx
-│ └── Keypad.tsx
-├── constants/
-│ └── keys.ts
-├── styles/
-│ ├── index.css
-│ └── App.css
-├── types/
-│ └── index.ts  
-├── utils/
-│ ├── calculate.ts  
-│ └── formatResult.ts
-├── App.tsx  
-└── main.tsx
+├── assets/                 
+├── components/              
+│   ├── Calculator.tsx
+│   ├── Display.tsx
+│   ├── History.tsx
+│   └── Keypad.tsx
+├── constants/              
+│   └── keys.ts          
+├── styles/         
+│   ├── index.css            
+│   └── App.css            
+├── types/                  
+│   └── index.ts    
+├── utils/                
+│   ├── calculate.ts       
+│   └── formatResult.ts
+├── App.tsx                
+└── main.tsx        
 
 🧠 Карта состояния (State Architecture)
 
