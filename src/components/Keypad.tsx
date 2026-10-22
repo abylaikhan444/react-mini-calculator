@@ -1,6 +1,5 @@
 import { KEYS } from "../keys";
 import type { KeyConfig } from "../types";
-import "../css/App.css";
 
 type KeypadProps = {
   onKeyPress: (key: KeyConfig) => void;

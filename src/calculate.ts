@@ -2,26 +2,23 @@ import type { Operation } from "./types";
 
 // Возвращает результат или null, если посчитать нельзя (деление на ноль).
 export function calculate(left: number, operation: Operation, right: number): number | null {
-  if (operation === "+") {
-    const result = left + right;
-    return Number(result.toFixed(10));
-  }
-  if (operation === "-") {
-    const result = left - right;
-    return Number(result.toFixed(10));
-  }
-  if (operation === "×") {
-    const result = left * right;
-    return Number(result.toFixed(10));
+  if (operation === "÷" && right === 0) return null;
+
+  let result: number;
+  switch (operation) {
+    case "+":
+      result = left + right;
+      break;
+    case "-":
+      result = left - right;
+      break;
+    case "×":
+      result = left * right;
+      break;
+    case "÷":
+      result = left / right;
+      break;
   }
 
-  if (operation === "÷") {
-    if (right === 0) {
-      return null;
-    } else {
-      const result = left / right;
-      return Number(result.toFixed(10));
-    }
-  }
-  return 0;
+  return Number(result.toFixed(10));
 }

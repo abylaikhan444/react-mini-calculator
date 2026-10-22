@@ -4,6 +4,7 @@ import type { KeyConfig, Operation } from "../types";
 import Display from "../components/Display";
 import Keypad from "../components/Keypad";
 import History from "../components/History";
+import { formatResult } from "../utils/formatResult";
 
 const INITIAL_INPUT = "0";
 const ERROR_TEXT = "Ошибка";
@@ -20,10 +21,7 @@ export default function Calculator() {
   // --- вычисляемое ---
   const hasError = currentInput === ERROR_TEXT;
 
-  let expressionText = "";
-  if (previousValue !== null && operation !== null) {
-    expressionText = `${previousValue} ${operation}`;
-  }
+  const expressionText = previousValue !== null && operation !== null ? `${previousValue} ${operation}` : "";
 
   // --- обработчики ---
   function handleKeyPress(key: KeyConfig) {
@@ -47,11 +45,8 @@ export default function Calculator() {
   }
 
   function handleDigit(digit: string) {
-    if (currentInput === ERROR_TEXT) {
-      setCurrentInput(digit);
-      setIsNewNumber(false);
-      setPreviousValue(null);
-      setOperation(null);
+    if (hasError) {
+      resetCalculator("0");
       return;
     }
     setCurrentInput((prev) => {
@@ -70,7 +65,7 @@ export default function Calculator() {
   }
 
   function handleDot() {
-    if (currentInput === ERROR_TEXT) {
+    if (hasError) {
       setCurrentInput("0.");
       setPreviousValue(null);
       setOperation(null);
@@ -106,10 +101,7 @@ export default function Calculator() {
       const result = calculate(previousValue, operation, Number(currentInput));
 
       if (result === null) {
-        setCurrentInput(ERROR_TEXT);
-        setPreviousValue(null);
-        setOperation(null);
-        setIsNewNumber(false);
+        resetCalculator(ERROR_TEXT);
         return;
       }
 
@@ -125,34 +117,31 @@ export default function Calculator() {
   }
 
   function handleEquals() {
-    if (currentInput === ERROR_TEXT) {
+    if (hasError || isNewNumber || previousValue === null || operation === null) {
       return;
     }
-    if (isNewNumber) {
-      return;
-    }
-    if (previousValue !== null && operation !== null) {
-      const result = calculate(previousValue, operation, Number(currentInput));
-      if (result === null) {
-        setCurrentInput(ERROR_TEXT);
-        setPreviousValue(null);
-        setOperation(null);
-        setIsNewNumber(false);
-        return;
-      } else {
-        setCurrentInput(String(result));
-        const entry = `${previousValue} ${operation} ${currentInput} = ${result}`;
-        setHistory((prev) => [entry, ...prev].slice(0, HISTORY_LIMIT));
-        setPreviousValue(null);
-        setOperation(null);
 
-        setIsNewNumber(true);
-      }
+    const result = calculate(previousValue, operation, Number(currentInput));
+    if (result === null) {
+      resetCalculator(ERROR_TEXT);
+      return;
     }
+
+    setCurrentInput(formatResult(result, MAX_INPUT_LENGTH));
+
+    const entry = `${previousValue} ${operation} ${Number(currentInput)} = ${result}`;
+    setHistory((prev) => [entry, ...prev].slice(0, HISTORY_LIMIT));
+    setPreviousValue(null);
+    setOperation(null);
+    setIsNewNumber(true);
   }
 
   function handleClear() {
-    setCurrentInput(INITIAL_INPUT);
+    resetCalculator("0");
+  }
+
+  function resetCalculator(nextInput: string) {
+    setCurrentInput(nextInput);
     setPreviousValue(null);
     setOperation(null);
     setIsNewNumber(false);
@@ -160,13 +149,15 @@ export default function Calculator() {
 
   return (
     <div className="calculator">
-      <div className="calcalculator-leftside">
-        <section className="calcalculator-header">
-          <h1 className="calcalculator-header-h1">Calculator Design</h1>
-          <span className="calcalculator-header-p">By-Abylaikhan</span>
+      <div className="calculator__left-side">
+        <section className="calculator__header">
+          <h1 className="calculator__header-h1">
+            Calculator <br /> Design
+          </h1>
+          <span className="calculator__header-p">By-Abylaikhan</span>
         </section>
       </div>
-      <section className="calculator-design">
+      <section className="calculator__design">
         <Display value={currentInput} expression={expressionText} />
         <Keypad onKeyPress={handleKeyPress} />
         <History entries={history} />
