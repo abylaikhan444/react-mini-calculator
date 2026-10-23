@@ -4,6 +4,7 @@
 (Immediate Execution Model), строгой типизацией и защитой от математических и
 логических ошибок.
 Автор: Abylaikhan
+Ссылка: https://react-mini-calculator-sigma.vercel.app/
 
 📌 Оглавление
 
